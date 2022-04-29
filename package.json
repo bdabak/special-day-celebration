@@ -1,0 +1,17 @@
+{
+  "name": "special-day-celebration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "jimp": "^0.6.0",
+    "joi": "^14.3.1"
+  }
+}
