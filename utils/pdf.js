@@ -18,9 +18,9 @@ const createPdfFromImage = async (imageBinary) => {
     height: page.getHeight(),
   });
 
-  pdfDoc.setTitle("Yıldönümü");
+  pdfDoc.setTitle("Yıldönümü Kutlaması");
   pdfDoc.setAuthor("BMC");
-  pdfDoc.setSubject("Nice başarılı yıllara");
+  pdfDoc.setSubject("Birlikte daha nice başarılı yıllara");
   pdfDoc.setKeywords(["anniversary", "celebration", "BMC"]);
   pdfDoc.setProducer("BMC");
   pdfDoc.setCreator("BMC Special Day App");
