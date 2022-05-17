@@ -18,6 +18,15 @@ const createPdfFromImage = async (imageBinary) => {
     height: page.getHeight(),
   });
 
+  pdfDoc.setTitle("Yıldönümü");
+  pdfDoc.setAuthor("BMC");
+  pdfDoc.setSubject("Nice başarılı yıllara");
+  pdfDoc.setKeywords(["anniversary", "celebration", "BMC"]);
+  pdfDoc.setProducer("BMC");
+  pdfDoc.setCreator("BMC Special Day App");
+  pdfDoc.setCreationDate(new Date());
+  pdfDoc.setModificationDate(new Date());
+
   // Serialize the PDFDocument to bytes (a Uint8Array)
   const pdfBytes = await pdfDoc.save();
 
