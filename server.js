@@ -2,11 +2,13 @@ const express = require("express");
 const app = express();
 
 const getImage = require("./routes/get-image");
+const getPdf = require("./routes/get-pdf");
 
 //Middleware
 app.use(express.json());
 
 app.use("/api/getImage", getImage);
+app.use("/api/getPdf", getPdf);
 
 const port = process.env.PORT || 3050;
 

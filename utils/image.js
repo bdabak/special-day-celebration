@@ -1,14 +1,12 @@
 const Jimp = require("jimp");
 
-async function processAnniversaryImage(sName, sSenio, sFooter, bWrite) {
+async function processAnniversaryImage(sName, sSenio, sFooter, bWrite, format) {
   try {
     const imgOriginal = "./assets/img/raw/anniversary_raw.jpg";
     const imgProcessed = "./assets/img/export/anniversary_modified.jpg";
 
     let img = await Jimp.read(imgOriginal);
-    let fontHeader = await Jimp.loadFont(
-      "./assets/fonts/header/GreatVibes_64.fnt"
-    );
+    let fontHeader = await Jimp.loadFont("./assets/fonts/header/Itim_64.fnt");
     let fontBody = await Jimp.loadFont(
       "./assets/fonts/body/Rajdhani_Light_30.fnt"
     );
@@ -163,28 +161,53 @@ async function processAnniversaryImage(sName, sSenio, sFooter, bWrite) {
       finalImage.write(imgProcessed);
     }
 
-    return await finalImage.getBase64Async(Jimp.MIME_JPEG);
+    switch (format) {
+      case "base64":
+        return await finalImage.getBase64Async(Jimp.MIME_JPEG);
+      default:
+        return await finalImage.getBufferAsync(Jimp.MIME_JPEG);
+    }
   } catch (e) {
     console.error(e);
   }
 }
 
 async function getImage(imageOptions) {
-  const { type, name, seniority, footer, writeToFile = false } = imageOptions;
+  const {
+    type,
+    name,
+    seniority,
+    footer,
+    writeToFile = false,
+    format = "base64",
+  } = imageOptions;
   switch (type) {
     case "anniversary":
       return await processAnniversaryImage(
         name,
         seniority,
         footer,
-        writeToFile
+        writeToFile,
+        format
       );
 
     default:
       throw new Error(`Image processor for "${type}" not implemented yet!`);
   }
 }
+// const printImage = async () => {
+//   const b = await getImage({
+//     type: "anniversary",
+//     name: "Hüsamettin",
+//     footer: "İnsan Kaynakları ve Kurumsal Gelişim Direktörlüğü",
+//     seniority: "5",
+//     writeToFile: true,
+//     format: "binary",
+//   });
 
-//getImage("Kıvanç", "10", "İnsan Kaynakları ve Kurumsal Gelişim Direktörlüğü");
+//   console.log(b);
+// };
+
+// printImage();
 
 module.exports = getImage;
